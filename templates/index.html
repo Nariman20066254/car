@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        // Отправляем запрос на сервер для выхода только при закрытии страницы
+        window.addEventListener('beforeunload', function (e) {
+            navigator.sendBeacon('{{ url_for("logout") }}');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();  // Предотвращаем стандартное поведение формы
+
+                const formData = new FormData(form);
+                
+                fetch('{{ url_for("search") }}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'  // Позволяет серверу отличать AJAX-запросы
+                    }
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // Обновляем содержимое страницы с полученными данными
+                    document.querySelector('.container').innerHTML = data;
+                })
+                .catch(error => console.error('Ошибка:', error));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Search for Car Parts</h1>
+        <form method="post">
+            <label for="query">Enter your query:</label>
+            <input type="text" id="query" name="query" value="{{ query or '' }}">
+            <button type="submit">Submit</button>
+        </form>
+        
+        {% if result %}
+            <h2>Result:</h2>
+            <div class="result">{{ result }}</div>
+        {% endif %}
+        
+        {% if images %}
+            <h2>Images:</h2>
+            <div class="images">
+                {% for img in images %}
+                    <img src="{{ img }}" alt="Image" class="result-image">
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif; /* Шрифт по умолчанию */
+    background-color: #f0f0f0; /* Цвет фона страницы */
+    color: #333; /* Цвет текста */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start; /* Выравнивание содержимого по левому краю */
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+    height: 100vh;
+    padding: 20px; /* Отступы по краям страницы */
+}
+
+.container {
+    background-color: #fff; /* Цвет фона контейнера */
+    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
+    padding: 20px;
+    width: 100%;
+    max-width: 100%; /* Увеличено для размещения изображений рядом с результатом */
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #0056b3; /* Цвет заголовка */
+    text-align: center; /* Выравнивание заголовка по левому краю */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #0056b3; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #004494; /* Темнее цвет фона кнопки при наведении */
+}
+
+.result {
+    white-space: pre-wrap; /* Сохраняет пробелы и переносы строк */
+    word-wrap: break-word; /* Перенос длинных слов */
+    max-width: 100%; /* Ширина блока */
+    overflow-wrap: break-word; /* Перенос длинных слов */
+    border: 1px solid #ddd; /* Рамка вокруг блока */
+    padding: 10px; /* Отступы внутри блока */
+    background-color: #f9f9f9; /* Фоновый цвет блока */
+    border-radius: 4px; /* Скругленные углы блока */
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.result-container {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.images-container {
+    flex: 1;
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.result-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
